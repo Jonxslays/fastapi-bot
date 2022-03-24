@@ -16,6 +16,8 @@ to the server.
 
 ## Running the bot
 
+Check out the `.env.example` and make sure your `.env` file is set up.
+
 ```bash
 # Clone the repo
 git clone https://github.com/Jonxslays/fastapi-bot.git

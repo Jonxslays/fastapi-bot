@@ -7,9 +7,9 @@ import hikari
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi.requests import Request
 from fastapi.responses import FileResponse, RedirectResponse, Response
+from fastapi.staticfiles import StaticFiles
 
 load_dotenv()
 
