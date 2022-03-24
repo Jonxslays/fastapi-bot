@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/styles.css" rel="stylesheet" />
+    <title>FastAPI - Hikari bot</title>
+</head>
+<body>
+    <div class="access-request-form">
+        <h2 class="access-request-title">Submit your information for approval to join the discord server</h1>
+        <form id="access-request-form" method="POST" action="/access/request">
+            <label for="userid">Discord user ID</label>
+            <input type="number" name="userid" decoration="none" required>
+
+            <label for="github-link">Github link</label>
+            <input type="url" name="github-link" required>
+
+            <button type="submit" form="access-request-form">
+                Submit
+            </button>
+        </form>
+    </div>
+</body>
+</html>

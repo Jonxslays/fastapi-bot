@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "fastapi-bot"
+version = "0.1.0"
+description = "A simple implementation of a GatewayBot that interacts with a separate FastAPI instance."
+authors = ["Jonxslays"]
+license = "MIT License"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+hikari = "^2.0.0-alpha.107"
+fastapi = "^0.75.0"
+python-dotenv = "^0.19.2"
+uvicorn = "^0.17.6"
+python-multipart = "^0.0.5"
+
+[tool.poetry.dev-dependencies]
+pyright = "^1.1.232"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
