@@ -59,9 +59,15 @@ async def oops() -> FileResponse:
     return FileResponse("static/oops.html")
 
 
+# Returns the thanks.html page
+@app.get("/thanks")
+async def thanks() -> FileResponse:
+    return FileResponse("static/thanks.html")
+
+
 # Validates an incoming submission on the index page form
 @app.post("/access/request")
-async def access_request(req: Request) -> Response:
+async def access_request(req: Request) -> RedirectResponse:
     # Extract form data into variables
     form_data = await req.form()
     userid: int = int(form_data.get("userid"))
@@ -99,11 +105,11 @@ async def access_request(req: Request) -> Response:
         .add_field("Status", "```PENDING```")
     )
 
-    # Send the embed to the channel
+    # Send the request to join embed to the channel
     await bot.rest.create_message(CHANNEL, embed, component=action_row)
 
     # Redirect the user on the site to the thanks.html page
-    return FileResponse("static/thanks.html")
+    return RedirectResponse("/thanks", status_code=302)
 
 
 # If a member joins and they are not in approved members, ban them
@@ -156,6 +162,8 @@ async def on_interaction(event: hikari.InteractionCreateEvent) -> None:
         await do_approve_action(inter, int(userid))
 
 
+# Approves a user to join the discord
+# Creates an invite link with 1 use limit for them
 async def do_approve_action(inter: hikari.ComponentInteraction, userid: int) -> None:
     # Create a new invite for this user to use
     invite = await bot.rest.create_invite(
@@ -181,6 +189,7 @@ async def do_approve_action(inter: hikari.ComponentInteraction, userid: int) -> 
     except hikari.ForbiddenError:
         # This can fail if the user has DM's closed
         # Make the embed red since we couldn't DM the user
+        # Add the users invite to this embed
         embed.color = hikari.Color(0xF00707)
         embed.add_field("DM failed", str(invite))
 
